@@ -45,6 +45,11 @@ section{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
+}
+
+.header.sticky{
+    border-bottom: .1rem solid rgba(0, 0, 0, .2);
 }
 
 .logo{
@@ -54,6 +59,9 @@ section{
     cursor: default;
 }
 
+.navbar.active{
+    display: block;
+}
 .navbar a{
     font-size: 1.7rem;
     color: var(--text-color);
@@ -96,7 +104,20 @@ span{
     line-height: 1.3;
 }
 .home-img img{
-    width: 35vw;    
+    width: 35vw; 
+    animation: floatImage 4s ease-in-out infinite;   
+}
+@keyframes floatImage{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-2.4rem);
+    }
+    100%{
+        transform: translateY(0);
+    }
+    
 }
 .home-contenido p{
     font-size: 1.6rem;
@@ -226,8 +247,11 @@ span{
 }
 .portafolio-caja img{
     width: 100%;
+    transition: .5s ease;
 } 
-
+.portafolio-caja:hover img{
+    transform: scale(1.1);
+}
 .portafolio-caja .portafolio-layer{
     position: absolute;
     bottom: 0;
@@ -239,9 +263,14 @@ span{
     align-items: center;
     flex-direction: column;
     text-align: center;
-    padding: 0.4rem;
+    padding: 0 4rem;
     transform: translateY(100%);
     transition: .5s ease;
+}
+
+
+.portafolio-caja:hover .portafolio-layer{
+    transform: translateY(0);
 }
 .portafolio-layer h4{
     font-size: 3rem;
@@ -264,11 +293,191 @@ span{
     color: var(--second-bg-color);
 }
 
-.portafolio-caja:hover img{
+
+
+
+/* Diseño contacto */
+
+.Contacto h2{
+    margin-bottom: 3rem;
+}
+.Contacto form{
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.Contacto form .input-box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Contacto form .input-box input, 
+.Contacto form textarea{
     width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.Contacto form .input-box input{
+    width: 49%;
+}
+.Contacto form textarea{
+    resize: none;
+}
+.Contacto form .btn{
+    margin-top: 2rem;
+   cursor: pointer;
+}
+
+/* Foooter */
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--second-bg-color);
+}
+.footer-text p{
+    font-size: 1.6rem;
+}
+.footer-iconTop a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
     transition: .5s ease;
 }
 
-.portafolio-caja:hover .portafolio-layer{
-    transform: translateY(0);
+.footer-iconTop a:hover{
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.footer-iconTop a i{
+    font-size: 2.4rem;
+    color: var(--second-bg-color);
+}
+
+
+
+/* diseño responsivo */
+
+@media (max-width: 1200px) {
+    html{
+        font-size: 55%;
+    }
+}
+@media (max-width: 991px) {
+    .header{
+        padding: 2rem 3%;
+    }
+    section{
+        padding: 10rem 3% 2rem;
+    }
+    .footer{
+        padding: 2rem 3%;
+    }
+    .Servicios{
+        padding-bottom: 7rem;
+    }
+    .portafolio{
+        padding-bottom: 7rem;
+    }
+    .Contacto{
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icono{
+        display: block;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg--color);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2) ;
+        display: none;
+    }
+
+    .navbar a{
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+
+    .inicio{
+        flex-direction: column;
+    }
+    .home-contenido h3 {
+        font-size: 2.6rem;
+    }
+    .home-contenido h1{
+        font-size: 5rem;
+    }
+    .home-img img{
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    .Sobre-mi{
+        flex-direction: column-reverse;
+    }
+    .Sobre-mi img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+
+    .Servicios h2{
+        margin-bottom: 3rem;
+    }
+
+    .portafolio h2{
+        margin-bottom: 3rem;
+    }
+    .contenedor-portafolio{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 617px){
+    .contenedor-portafolio{
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 450px){
+    html{
+        font-size: 50%;
+    }
+    .Contacto form .input-box input{
+        width: 100%;
+    }
+}
+
+@media (max-width: 365px){
+    .home-img img{
+        width: 90vw;
+    }
+    .about-img img{
+        width: 90vw;
+    }
+    .footer{
+        flex-direction: column-reverse;
+    }
+    .footer p{
+        text-align: center;
+        margin-top: 2rem;
+    }
 }
